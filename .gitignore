@@ -9,7 +9,7 @@ obj/
 *.db-wal
 
 ## Uploaded resource files (local storage)
-App_Data/Uploads/
+**/App_Data/Uploads/
 
 ## IDE
 .vs/
