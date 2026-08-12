@@ -36,6 +36,23 @@ In Development, Swagger UI for the REST API is available at `/swagger`.
 - `Pages/` — resource library (`Index`), `Upload`, `MyUploads`, `Resources/Details`, `Resources/Download`, `Admin/Index` (moderation console)
 - `Controllers/ResourcesController.cs` — REST API (`GET/POST /api/resources`, `/mine`, `/pending`, `/{id}/approve`, `/{id}/reject`, `/{id}/download`)
 
+## Team
+
+| # | Name | Role |
+|---|------|------|
+| 1 | Austion Bediako - 22126218 | Team Lead / Full-Stack Developer |
+| 2 | Kenny Idan - 22180114 | Backend Developer (ASP.NET Core API) |
+| 3 | Chris Nana Opoku - 22128192 | Frontend Developer (Blazor / Razor Pages) |
+| 4 | Joseph Akondoh-Tetteh - 22055467 | Database Engineer (EF Core / SQL Server) |
+| 5 | Noble Ackah-Yensu - 22047433 | Authentication & Security (ASP.NET Identity) |
+| 6 | Robert Owoo - 22018250 | File Upload & Storage Module |
+| 7 | Nicole Eshun - 22241518 | Search & Filter Implementation |
+| 8 | Gabriel Ansah - 22018785 | UI/UX Designer |
+| 9 | Kwabena Yeboah - 22150775 | Admin Panel Developer |
+| 10 | Bamanjo Angela - 22077960 | QA & Testing Engineer |
+| 11 | Blessing Owusu Frema - 22108048 | Documentation & Report Writing |
+| 12 | Aiden Be-ri - 22034367 | DevOps / Deployment |
+
 ## Notes
 
 - The API shares the same Identity cookie as the Razor Pages UI rather than a separate token scheme — simplest for a single deployed app. A public/mobile client would need bearer-token auth added instead.
