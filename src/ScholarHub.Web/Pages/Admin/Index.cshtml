@@ -1,0 +1,115 @@
+@page
+@model ScholarHub.Web.Pages.Admin.IndexModel
+@using ScholarHub.Web.Models
+@{
+    ViewData["Title"] = "Admin Console";
+}
+
+<h1 class="h3 mb-3">Admin Moderation Console</h1>
+
+@if (Model.StatusMessage is not null)
+{
+    <div class="alert alert-success">@Model.StatusMessage</div>
+}
+
+<h2 class="h5">Pending review (@Model.Pending.Count)</h2>
+@if (Model.Pending.Count == 0)
+{
+    <div class="alert alert-secondary">Nothing waiting for review.</div>
+}
+else
+{
+    <div class="table-responsive mb-4">
+        <table class="table align-middle">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Course</th>
+                    <th>Uploaded by</th>
+                    <th>Uploaded</th>
+                    <th style="min-width: 22rem;">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var resource in Model.Pending)
+                {
+                    <tr>
+                        <td><a asp-page="/Resources/Details" asp-route-id="@resource.Id">@resource.Title</a></td>
+                        <td>@resource.CourseCode &middot; @resource.Department &middot; @resource.AcademicYear</td>
+                        <td>@(resource.UploadedBy?.FullName ?? "Unknown")</td>
+                        <td>@resource.UploadedAt.ToString("yyyy-MM-dd")</td>
+                        <td>
+                            <div class="d-flex gap-2">
+                                <form method="post" asp-page-handler="Approve" asp-route-id="@resource.Id">
+                                    <button type="submit" class="btn btn-success btn-sm">Approve</button>
+                                </form>
+                                <form method="post" asp-page-handler="Reject" asp-route-id="@resource.Id" class="d-flex gap-1">
+                                    <input type="text" name="reason" class="form-control form-control-sm" placeholder="Rejection reason" required style="width: 12rem;" />
+                                    <button type="submit" class="btn btn-outline-danger btn-sm">Reject</button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+
+<h2 class="h5">All resources</h2>
+<form method="get" class="row g-2 align-items-end mb-3">
+    <div class="col-auto">
+        <label asp-for="StatusFilter" class="form-label">Status</label>
+        <select asp-for="StatusFilter" class="form-select" asp-items="Html.GetEnumSelectList<ResourceStatus>()">
+            <option value="">All</option>
+        </select>
+    </div>
+    <div class="col-auto">
+        <button type="submit" class="btn btn-outline-primary">Filter</button>
+    </div>
+</form>
+
+<div class="table-responsive">
+    <table class="table align-middle">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Course</th>
+                <th>Status</th>
+                <th>Uploaded by</th>
+                <th class="text-end">Views</th>
+                <th class="text-end">Downloads</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var resource in Model.AllResources)
+            {
+                <tr>
+                    <td><a asp-page="/Resources/Details" asp-route-id="@resource.Id">@resource.Title</a></td>
+                    <td>@resource.CourseCode</td>
+                    <td>
+                        @{
+                            var badgeClass = resource.Status switch
+                            {
+                                ResourceStatus.Approved => "bg-success",
+                                ResourceStatus.Rejected => "bg-danger",
+                                _ => "bg-warning text-dark"
+                            };
+                        }
+                        <span class="badge @badgeClass">@resource.Status</span>
+                    </td>
+                    <td>@(resource.UploadedBy?.FullName ?? "Unknown")</td>
+                    <td class="text-end">@resource.ViewCount</td>
+                    <td class="text-end">@resource.DownloadCount</td>
+                    <td>
+                        <form method="post" asp-page-handler="Delete" asp-route-id="@resource.Id"
+                              onsubmit="return confirm('Remove this resource? This cannot be undone.');">
+                            <button type="submit" class="btn btn-outline-danger btn-sm">Remove</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,71 @@
+@page
+@model MyUploadsModel
+@using ScholarHub.Web.Models
+@{
+    ViewData["Title"] = "My Uploads";
+}
+
+<h1 class="h3 mb-3">My Uploads</h1>
+
+@if (Model.StatusMessage is not null)
+{
+    <div class="alert alert-success">@Model.StatusMessage</div>
+}
+
+<p><a asp-page="/Upload" class="btn btn-primary btn-sm">Upload a new resource</a></p>
+
+@if (Model.Uploads.Count == 0)
+{
+    <div class="alert alert-secondary">You haven't uploaded any resources yet.</div>
+}
+else
+{
+    <div class="table-responsive">
+        <table class="table align-middle">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Course</th>
+                    <th>Status</th>
+                    <th>Uploaded</th>
+                    <th class="text-end">Views</th>
+                    <th class="text-end">Downloads</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var resource in Model.Uploads)
+                {
+                    <tr>
+                        <td><a asp-page="/Resources/Details" asp-route-id="@resource.Id">@resource.Title</a></td>
+                        <td>@resource.CourseCode</td>
+                        <td>
+                            @{
+                                var badgeClass = resource.Status switch
+                                {
+                                    ResourceStatus.Approved => "bg-success",
+                                    ResourceStatus.Rejected => "bg-danger",
+                                    _ => "bg-warning text-dark"
+                                };
+                            }
+                            <span class="badge @badgeClass">@resource.Status</span>
+                            @if (resource.Status == ResourceStatus.Rejected && !string.IsNullOrWhiteSpace(resource.RejectionReason))
+                            {
+                                <div class="small text-muted">@resource.RejectionReason</div>
+                            }
+                        </td>
+                        <td>@resource.UploadedAt.ToString("yyyy-MM-dd")</td>
+                        <td class="text-end">@resource.ViewCount</td>
+                        <td class="text-end">@resource.DownloadCount</td>
+                        <td>
+                            <form method="post" asp-page-handler="Delete" asp-route-id="@resource.Id"
+                                  onsubmit="return confirm('Delete this resource? This cannot be undone.');">
+                                <button type="submit" class="btn btn-outline-danger btn-sm">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}

@@ -1,0 +1,21 @@
+## .NET
+bin/
+obj/
+*.user
+
+## SQLite
+*.db
+*.db-shm
+*.db-wal
+
+## Uploaded resource files (local storage)
+App_Data/Uploads/
+
+## IDE
+.vs/
+.vscode/
+*.suo
+
+## OS
+Thumbs.db
+.DS_Store

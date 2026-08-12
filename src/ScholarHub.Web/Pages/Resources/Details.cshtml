@@ -1,0 +1,65 @@
+@page "{id:int}"
+@model ScholarHub.Web.Pages.Resources.DetailsModel
+@{
+    ViewData["Title"] = Model.Resource.Title;
+}
+
+<a asp-page="/Index" class="btn btn-link ps-0">&larr; Back to library</a>
+
+<div class="card">
+    <div class="card-body">
+        <div class="d-flex justify-content-between align-items-start">
+            <h1 class="h3">@Model.Resource.Title</h1>
+            @if (Model.Resource.Status != ScholarHub.Web.Models.ResourceStatus.Approved)
+            {
+                <span class="badge bg-warning text-dark">@Model.Resource.Status</span>
+            }
+        </div>
+
+        @if (!string.IsNullOrWhiteSpace(Model.Resource.Description))
+        {
+            <p>@Model.Resource.Description</p>
+        }
+
+        <dl class="row">
+            <dt class="col-sm-3">Department</dt>
+            <dd class="col-sm-9">@Model.Resource.Department</dd>
+
+            <dt class="col-sm-3">Course code</dt>
+            <dd class="col-sm-9">@Model.Resource.CourseCode</dd>
+
+            <dt class="col-sm-3">Academic year</dt>
+            <dd class="col-sm-9">@Model.Resource.AcademicYear</dd>
+
+            <dt class="col-sm-3">Type</dt>
+            <dd class="col-sm-9">@Model.Resource.Type</dd>
+
+            <dt class="col-sm-3">Uploaded by</dt>
+            <dd class="col-sm-9">@(Model.Resource.UploadedBy?.FullName ?? "Unknown")</dd>
+
+            <dt class="col-sm-3">File</dt>
+            <dd class="col-sm-9">@Model.Resource.OriginalFileName (@((Model.Resource.FileSizeBytes / 1024.0).ToString("N0")) KB)</dd>
+
+            <dt class="col-sm-3">Views / Downloads</dt>
+            <dd class="col-sm-9">@Model.Resource.ViewCount views &middot; @Model.Resource.DownloadCount downloads</dd>
+
+            @if (Model.Resource.Status == ScholarHub.Web.Models.ResourceStatus.Rejected && !string.IsNullOrWhiteSpace(Model.Resource.RejectionReason))
+            {
+                <dt class="col-sm-3">Rejection reason</dt>
+                <dd class="col-sm-9">@Model.Resource.RejectionReason</dd>
+            }
+        </dl>
+
+        @if (Model.CanDownload)
+        {
+            <a class="btn btn-primary" asp-page="/Resources/Download" asp-route-id="@Model.Resource.Id">Download</a>
+        }
+        else
+        {
+            <p class="text-muted">
+                <a asp-area="Identity" asp-page="/Account/Login" asp-route-returnUrl="@Url.Page("/Resources/Details", new { id = Model.Resource.Id })">Log in</a>
+                to download this resource.
+            </p>
+        }
+    </div>
+</div>

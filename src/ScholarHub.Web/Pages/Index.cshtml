@@ -1,0 +1,108 @@
+@page
+@model IndexModel
+@using ScholarHub.Web.Models
+@{
+    ViewData["Title"] = "Resource Library";
+}
+
+<div class="mb-4">
+    <h1 class="display-6">ScholarHub Resource Library</h1>
+    <p class="text-muted">Search verified past questions, lecture notes and slides shared by students and lecturers.</p>
+</div>
+
+<form method="get" class="row g-2 align-items-end mb-4 p-3 border rounded bg-light">
+    <div class="col-md-3">
+        <label asp-for="Keyword" class="form-label">Keyword</label>
+        <input asp-for="Keyword" class="form-control" placeholder="Title, description, course code..." />
+    </div>
+    <div class="col-md-3">
+        <label asp-for="Department" class="form-label">Department</label>
+        <select asp-for="Department" class="form-select">
+            <option value="">All departments</option>
+            @foreach (var dept in Model.Departments)
+            {
+                <option value="@dept">@dept</option>
+            }
+        </select>
+    </div>
+    <div class="col-md-2">
+        <label asp-for="CourseCode" class="form-label">Course code</label>
+        <input asp-for="CourseCode" class="form-control" placeholder="e.g. CSCD201" />
+    </div>
+    <div class="col-md-2">
+        <label asp-for="AcademicYear" class="form-label">Academic year</label>
+        <input asp-for="AcademicYear" class="form-control" placeholder="2023/2024" />
+    </div>
+    <div class="col-md-2">
+        <label asp-for="Type" class="form-label">Type</label>
+        <select asp-for="Type" class="form-select" asp-items="Html.GetEnumSelectList<ResourceType>()">
+            <option value="">Any type</option>
+        </select>
+    </div>
+    <div class="col-12 d-flex gap-2 mt-2">
+        <button type="submit" class="btn btn-primary">Search</button>
+        <a asp-page="/Index" class="btn btn-outline-secondary">Reset</a>
+    </div>
+</form>
+
+<p class="text-muted">@Model.Results.TotalCount resource(s) found.</p>
+
+@if (Model.Results.Items.Count == 0)
+{
+    <div class="alert alert-secondary">No approved resources match your search yet.</div>
+}
+else
+{
+    <div class="table-responsive">
+        <table class="table table-hover align-middle">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Course</th>
+                    <th>Department</th>
+                    <th>Type</th>
+                    <th>Year</th>
+                    <th>Uploaded by</th>
+                    <th class="text-end">Views</th>
+                    <th class="text-end">Downloads</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var resource in Model.Results.Items)
+                {
+                    <tr>
+                        <td><a asp-page="/Resources/Details" asp-route-id="@resource.Id">@resource.Title</a></td>
+                        <td>@resource.CourseCode</td>
+                        <td>@resource.Department</td>
+                        <td>@resource.Type</td>
+                        <td>@resource.AcademicYear</td>
+                        <td>@(resource.UploadedBy?.FullName ?? "Unknown")</td>
+                        <td class="text-end">@resource.ViewCount</td>
+                        <td class="text-end">@resource.DownloadCount</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    @if (Model.Results.TotalPages > 1)
+    {
+        <nav aria-label="Search results pages">
+            <ul class="pagination">
+                @for (var pageNum = 1; pageNum <= Model.Results.TotalPages; pageNum++)
+                {
+                    <li class="page-item @(pageNum == Model.Results.PageNumber ? "active" : "")">
+                        <a class="page-link"
+                           asp-page="/Index"
+                           asp-route-PageNumber="@pageNum"
+                           asp-route-Keyword="@Model.Keyword"
+                           asp-route-Department="@Model.Department"
+                           asp-route-CourseCode="@Model.CourseCode"
+                           asp-route-AcademicYear="@Model.AcademicYear"
+                           asp-route-Type="@Model.Type">@pageNum</a>
+                    </li>
+                }
+            </ul>
+        </nav>
+    }
+}
