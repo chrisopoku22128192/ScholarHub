@@ -1,4 +1,4 @@
-# ScholarHub
+does ur # ScholarHub
 
 An academic resource sharing platform for university students — students can upload, search, and download verified past questions, lecture notes, and slides, organised by department, course code, and academic year. Full details in `ScholarHub_NET_Proposal.pdf`.
 
@@ -51,7 +51,7 @@ In Development, Swagger UI for the REST API is available at `/swagger`.
 | 9 | Kwabena Yeboah - 22150775 | Admin Panel Developer |
 | 10 | Bamanjo Angela - 22077960 | QA & Testing Engineer |
 | 11 | Blessing Owusu Frema - 22108048 | Documentation & Report Writing |
-| 12 | Aiden Be-ri - 22034367 | DevOps / Deployment |
+| 12 | Aiden Be-ir - 22034367 | DevOps / Deployment |
 
 ## Notes
 
