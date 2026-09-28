@@ -1,8 +1,171 @@
-﻿@page
+@page
 @model PrivacyModel
 @{
     ViewData["Title"] = "Privacy Policy";
 }
-<h1>@ViewData["Title"]</h1>
 
-<p>Use this page to detail your site's privacy policy.</p>
+<div class="sh-legal-header sh-decorated">
+    <div class="sh-legal-header-grid">
+        <div>
+            <div class="sh-legal-pill"><i class="bi bi-shield-lock"></i>Last updated: September 2026</div>
+            <h1>Privacy Policy</h1>
+            <p>How ScholarHub collects, uses, and protects your information when you search, upload, and download academic resources.</p>
+        </div>
+        <div class="sh-illustration sh-illustration-lock d-none d-md-block">
+            <div class="sh-blob"></div>
+            <svg class="sh-icon" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="22" y="46" width="56" height="42" rx="10" fill="#FAF6EE" />
+                <path d="M32 46V34a18 18 0 0136 0v12" stroke="#FAF6EE" stroke-width="6" fill="none" stroke-linecap="round" />
+                <path d="M50 62c6 0 10 5 8 11c-1 3-4 5-8 5s-7-2-8-5c-2-6 2-11 8-11Z" fill="#3548b4" />
+                <path d="M50 62 C46 58 40 58 38 62 C36 66 40 70 44 68" stroke="#5f9c78" stroke-width="3" fill="none" stroke-linecap="round" />
+            </svg>
+            <svg class="sh-sparkle" style="top:-10px; right:0; width:30px; height:30px;" viewBox="-8 -8 16 16">
+                <path d="M0 -6 C1 -2 2 -1 6 0 C2 1 1 2 0 6 C-1 2 -2 1 -6 0 C-2 -1 -1 -2 0 -6Z" fill="#FAF6EE" />
+            </svg>
+            <svg class="sh-sparkle" style="bottom:14px; left:-14px; width:18px; height:18px;" viewBox="-8 -8 16 16">
+                <path d="M0 -6 C1 -2 2 -1 6 0 C2 1 1 2 0 6 C-1 2 -2 1 -6 0 C-2 -1 -1 -2 0 -6Z" fill="#3548b4" />
+            </svg>
+            <span class="sh-dot" style="width:12px; height:12px; top:20px; left:-10px; background:#FAF6EE;"></span>
+        </div>
+    </div>
+</div>
+
+<div class="sh-legal-layout">
+    <nav class="sh-legal-toc d-none d-md-block">
+        <div class="sh-legal-toc-label">On this page</div>
+        <a href="#collect"><i class="bi bi-database me-1"></i>Information we collect</a>
+        <a href="#use"><i class="bi bi-gear me-1"></i>How we use it</a>
+        <a href="#storage"><i class="bi bi-hdd-network me-1"></i>Storage &amp; security</a>
+        <a href="#cookies"><i class="bi bi-cookie me-1"></i>Cookies</a>
+        <a href="#sharing"><i class="bi bi-people me-1"></i>Sharing</a>
+        <a href="#retention"><i class="bi bi-clock-history me-1"></i>Data retention</a>
+        <a href="#rights"><i class="bi bi-person-check me-1"></i>Your rights &amp; choices</a>
+        <a href="#children"><i class="bi bi-mortarboard me-1"></i>Children's privacy</a>
+        <a href="#changes"><i class="bi bi-arrow-repeat me-1"></i>Changes to this policy</a>
+        <a href="#contact"><i class="bi bi-envelope me-1"></i>Contact us</a>
+    </nav>
+
+    <div>
+        <div class="sh-legal-summary">
+            <h2><i class="bi bi-lightbulb me-1"></i>The short version</h2>
+            <ul>
+                <li>We collect your account details (email, name, department), the resources you upload, and basic usage stats.</li>
+                <li>We use that data only to run the platform — search, moderation, attribution, and download access control.</li>
+                <li>We never sell your data or share it with third parties, and we don't use tracking or advertising cookies.</li>
+                <li>Files are stored outside the public web root; every download passes through an authorization check.</li>
+                <li>You can delete your own uploads any time, or ask an admin to remove your account entirely.</li>
+            </ul>
+        </div>
+
+        <p>
+            ScholarHub is an academic resource sharing platform built for university students to upload,
+            search, and download verified past questions, lecture notes, and slides. This policy explains
+            what information we collect, why we collect it, and how it is used and protected.
+        </p>
+
+        <section id="collect" class="sh-legal-section">
+            <h2><i class="bi bi-database"></i>Information we collect</h2>
+            <ul>
+                <li><strong>Account information</strong> — when you register, we store your email address, full
+                    name, and department, along with a securely hashed password managed by ASP.NET Core Identity.
+                    We never store your password in plain text.</li>
+                <li><strong>Uploaded content</strong> — files you upload (PDF, DOCX, or PPTX) along with the
+                    title, description, department, course code, and academic year you provide.</li>
+                <li><strong>Usage data</strong> — view counts and download counts on resources, used to show
+                    popularity and help other students find useful material.</li>
+                <li><strong>Authentication cookies</strong> — a session cookie that keeps you signed in. We don't
+                    use third-party tracking or advertising cookies.</li>
+            </ul>
+        </section>
+
+        <section id="use" class="sh-legal-section">
+            <h2><i class="bi bi-gear"></i>How we use your information</h2>
+            <ul>
+                <li>To let you sign in, upload resources, and manage your own uploads from <em>My Uploads</em>.</li>
+                <li>To let admins moderate submissions (approve or reject) before they appear publicly, so the
+                    resource library stays accurate and relevant.</li>
+                <li>To attribute uploads to the student who shared them, so classmates know the source.</li>
+                <li>To display aggregate view/download counts on resources.</li>
+            </ul>
+        </section>
+
+        <section id="storage" class="sh-legal-section">
+            <h2><i class="bi bi-hdd-network"></i>How your information is stored</h2>
+            <p>
+                Uploaded files are stored on the server outside the public web root and are never directly
+                linkable — every download is served through an authorized handler that checks your permissions
+                first. Account and resource data is stored in the application database and is only accessible
+                to the ScholarHub application and its administrators.
+            </p>
+        </section>
+
+        <section id="cookies" class="sh-legal-section">
+            <h2><i class="bi bi-cookie"></i>Cookies</h2>
+            <p>
+                ScholarHub uses a single authentication cookie issued by ASP.NET Core Identity to keep you
+                signed in between requests. It's strictly functional — we don't use analytics, tracking, or
+                advertising cookies, and no cookie data is shared with third parties.
+            </p>
+        </section>
+
+        <section id="sharing" class="sh-legal-section">
+            <h2><i class="bi bi-people"></i>Sharing</h2>
+            <p>
+                We do not sell or share your personal information with third parties. Your name is shown to
+                other signed-in users as the uploader of resources you share, consistent with a normal academic
+                sharing platform.
+            </p>
+        </section>
+
+        <section id="retention" class="sh-legal-section">
+            <h2><i class="bi bi-clock-history"></i>Data retention</h2>
+            <p>
+                We keep your account and uploaded resources for as long as your account is active. Deleted
+                uploads are removed from storage immediately. If you close your account, your personal
+                information is removed within a reasonable time, except where we need to retain minimal
+                records for moderation integrity (for example, who approved or rejected a resource).
+            </p>
+        </section>
+
+        <section id="rights" class="sh-legal-section">
+            <h2><i class="bi bi-person-check"></i>Your rights &amp; choices</h2>
+            <p>
+                You can delete your own uploads at any time from <em>My Uploads</em>. To request a copy of
+                your data, correct inaccurate details, or remove your account entirely, contact a ScholarHub
+                administrator using the details below.
+            </p>
+        </section>
+
+        <section id="children" class="sh-legal-section">
+            <h2><i class="bi bi-mortarboard"></i>Children's privacy</h2>
+            <p>
+                ScholarHub is intended for university students and is not directed at children under 13.
+                We do not knowingly collect personal information from children.
+            </p>
+        </section>
+
+        <section id="changes" class="sh-legal-section">
+            <h2><i class="bi bi-arrow-repeat"></i>Changes to this policy</h2>
+            <p>
+                We may update this policy as ScholarHub evolves. Material changes will be reflected by
+                updating the "last updated" date at the top of this page.
+            </p>
+        </section>
+
+        <section id="contact" class="sh-legal-section" style="border-bottom: none; margin-bottom: 1.5rem;">
+            <h2><i class="bi bi-envelope"></i>Contact us</h2>
+            <div class="sh-legal-contact">
+                <p class="mb-0">
+                    Questions about this policy or your data? Reach out to a ScholarHub administrator
+                    through the <em>Admin Console</em>, or email
+                    <a href="mailto:admin@scholarhub.local">admin@scholarhub.local</a>.
+                </p>
+            </div>
+        </section>
+
+        <p class="text-muted small">
+            This policy is provided for demonstration purposes as part of an academic project and does not
+            constitute a legal document.
+        </p>
+    </div>
+</div>

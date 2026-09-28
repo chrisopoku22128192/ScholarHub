@@ -5,17 +5,17 @@
     ViewData["Title"] = "Admin Console";
 }
 
-<h1 class="h3 mb-3">Admin Moderation Console</h1>
+<h1 class="h3 mb-3"><i class="bi bi-shield-check me-2 text-primary"></i>Admin Moderation Console</h1>
 
 @if (Model.StatusMessage is not null)
 {
-    <div class="alert alert-success">@Model.StatusMessage</div>
+    <div class="alert alert-success"><i class="bi bi-check-circle me-1"></i>@Model.StatusMessage</div>
 }
 
-<h2 class="h5">Pending review (@Model.Pending.Count)</h2>
+<h2 class="h5"><i class="bi bi-hourglass-split me-1 text-muted"></i>Pending review (@Model.Pending.Count)</h2>
 @if (Model.Pending.Count == 0)
 {
-    <div class="alert alert-secondary">Nothing waiting for review.</div>
+    <div class="alert alert-secondary"><i class="bi bi-check2-all me-1"></i>Nothing waiting for review.</div>
 }
 else
 {
@@ -56,7 +56,7 @@ else
     </div>
 }
 
-<h2 class="h5">All resources</h2>
+<h2 class="h5"><i class="bi bi-list-ul me-1 text-muted"></i>All resources</h2>
 <form method="get" class="row g-2 align-items-end mb-3">
     <div class="col-auto">
         <label asp-for="StatusFilter" class="form-label">Status</label>

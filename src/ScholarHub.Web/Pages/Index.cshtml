@@ -5,12 +5,32 @@
     ViewData["Title"] = "Resource Library";
 }
 
-<div class="mb-4">
-    <h1 class="display-6">ScholarHub Resource Library</h1>
-    <p class="text-muted">Search verified past questions, lecture notes and slides shared by students and lecturers.</p>
+<div class="sh-hero sh-decorated">
+    <div class="sh-hero-grid">
+        <div>
+            <h1>ScholarHub Resource Library</h1>
+            <p>Search verified past questions, lecture notes and slides shared by students and lecturers &mdash; organised by department, course code and academic year.</p>
+        </div>
+        <div class="sh-illustration d-none d-md-block">
+            <div class="sh-blob"></div>
+            <svg class="sh-icon" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M50 28 L92 44 L50 60 L8 44 Z" fill="#FAF6EE" />
+                <path d="M24 51 V70 C24 76 36 80 50 80 C64 80 76 76 76 70 V51" stroke="#FAF6EE" stroke-width="4" fill="none" stroke-linecap="round" />
+                <line x1="92" y1="44" x2="92" y2="64" stroke="#FAF6EE" stroke-width="4" stroke-linecap="round" />
+                <circle cx="92" cy="67" r="3.5" fill="#232f7f" />
+            </svg>
+            <svg class="sh-sparkle" style="top:-10px; right:0; width:30px; height:30px;" viewBox="-8 -8 16 16">
+                <path d="M0 -6 C1 -2 2 -1 6 0 C2 1 1 2 0 6 C-1 2 -2 1 -6 0 C-2 -1 -1 -2 0 -6Z" fill="#FAF6EE" />
+            </svg>
+            <svg class="sh-sparkle" style="bottom:14px; left:-14px; width:18px; height:18px;" viewBox="-8 -8 16 16">
+                <path d="M0 -6 C1 -2 2 -1 6 0 C2 1 1 2 0 6 C-1 2 -2 1 -6 0 C-2 -1 -1 -2 0 -6Z" fill="#e8a33d" />
+            </svg>
+            <span class="sh-dot" style="width:12px; height:12px; top:20px; left:-10px; background:#FAF6EE;"></span>
+        </div>
+    </div>
 </div>
 
-<form method="get" class="row g-2 align-items-end mb-4 p-3 border rounded bg-light">
+<form method="get" class="row g-2 align-items-end mb-4 p-3 sh-search-panel">
     <div class="col-md-3">
         <label asp-for="Keyword" class="form-label">Keyword</label>
         <input asp-for="Keyword" class="form-control" placeholder="Title, description, course code..." />
@@ -40,16 +60,16 @@
         </select>
     </div>
     <div class="col-12 d-flex gap-2 mt-2">
-        <button type="submit" class="btn btn-primary">Search</button>
+        <button type="submit" class="btn btn-primary"><i class="bi bi-search me-1"></i>Search</button>
         <a asp-page="/Index" class="btn btn-outline-secondary">Reset</a>
     </div>
 </form>
 
-<p class="text-muted">@Model.Results.TotalCount resource(s) found.</p>
+<p class="text-muted"><strong>@Model.Results.TotalCount</strong> resource(s) found.</p>
 
 @if (Model.Results.Items.Count == 0)
 {
-    <div class="alert alert-secondary">No approved resources match your search yet.</div>
+    <div class="alert alert-secondary"><i class="bi bi-info-circle me-1"></i>No approved resources match your search yet.</div>
 }
 else
 {
@@ -70,11 +90,17 @@ else
             <tbody>
                 @foreach (var resource in Model.Results.Items)
                 {
+                    var typeIcon = resource.Type switch
+                    {
+                        ResourceType.PastQuestion => "bi-patch-question",
+                        ResourceType.Notes => "bi-journal-text",
+                        _ => "bi-easel2"
+                    };
                     <tr>
                         <td><a asp-page="/Resources/Details" asp-route-id="@resource.Id">@resource.Title</a></td>
                         <td>@resource.CourseCode</td>
                         <td>@resource.Department</td>
-                        <td>@resource.Type</td>
+                        <td><span class="sh-type-badge"><i class="bi @typeIcon me-1"></i>@Html.DisplayFor(_ => resource.Type)</span></td>
                         <td>@resource.AcademicYear</td>
                         <td>@(resource.UploadedBy?.FullName ?? "Unknown")</td>
                         <td class="text-end">@resource.ViewCount</td>
