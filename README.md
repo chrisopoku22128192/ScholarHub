@@ -1,6 +1,9 @@
-does ur # ScholarHub
+# ScholarHub
 
 An academic resource sharing platform for university students — students can upload, search, and download verified past questions, lecture notes, and slides, organised by department, course code, and academic year. Full details in `ScholarHub_NET_Proposal.pdf`.
+
+- **Repository:** https://github.com/chrisopoku22128192/ScholarHub
+- **Live deployment:** https://scholarhub-app.azurewebsites.net
 
 ## Stack
 
@@ -9,6 +12,8 @@ An academic resource sharing platform for university students — students can u
 - ASP.NET Core Identity (cookie auth, `Admin`/`Student` roles)
 - Entity Framework Core with SQLite (`app.db`, local file for dev; swap to SQL Server by changing `ConnectionStrings:DefaultConnection` and the `UseSqlite`/`UseSqlServer` call in `Program.cs`)
 - Local disk file storage (`App_Data/Uploads/`, outside `wwwroot` so files are never directly link-able — every download goes through the authorized download handler)
+
+**Architecture: monolithic, not separate frontend/backend.** The Razor Pages UI and the `/api/resources` REST API are two entry points into the *same* ASP.NET Core project — one codebase, one build, one deployment, sharing the same service layer (`IResourceService`, `IFileStorageService`) and the same Identity auth cookie. Both are served from the one deployment URL above (e.g. `/` for the UI, `/api/resources` for the API) — there's no separate frontend app calling this as an external API.
 
 ## Running it
 
@@ -58,3 +63,4 @@ In Development, Swagger UI for the REST API is available at `/swagger`.
 - The API shares the same Identity cookie as the Razor Pages UI rather than a separate token scheme — simplest for a single deployed app. A public/mobile client would need bearer-token auth added instead.
 - Uploads accept PDF, DOCX, and PPTX up to 25 MB (see `LocalFileStorageService`).
 - New uploads are always `Pending` until an admin approves or rejects them from `/Admin`.
+- The live deployment runs on Azure App Service's free F1 tier, which idles after ~20 minutes of inactivity — the first request after a while can take 15–30s to cold-start.
