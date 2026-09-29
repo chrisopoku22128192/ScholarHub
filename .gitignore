@@ -18,6 +18,9 @@ publish/
 .vscode/
 *.suo
 
+## Local tooling config
+.claude/
+
 ## OS
 Thumbs.db
 .DS_Store
