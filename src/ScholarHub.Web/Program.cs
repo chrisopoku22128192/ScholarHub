@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using ScholarHub.Web.Data;
 using ScholarHub.Web.Models;
@@ -8,6 +9,17 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+
+// The SQLite provider does not create missing parent directories for the
+// data file, so hosts that point DataSource at a dedicated persistent
+// path (e.g. Azure App Service's /home) need it created up front.
+var sqliteDataSource = new SqliteConnectionStringBuilder(connectionString).DataSource;
+var sqliteDirectory = Path.GetDirectoryName(Path.GetFullPath(sqliteDataSource));
+if (!string.IsNullOrEmpty(sqliteDirectory))
+{
+    Directory.CreateDirectory(sqliteDirectory);
+}
+
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlite(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
