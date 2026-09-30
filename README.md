@@ -57,6 +57,7 @@ In Development, Swagger UI for the REST API is available at `/swagger`.
 | 10 | Bamanjo Angela - 22077960 | QA & Testing Engineer |
 | 11 | Blessing Owusu Frema - 22108048 | Documentation & Report Writing |
 | 12 | Aiden Be-ir - 22034367 | DevOps / Deployment |
+| 13 | Ted William Ofori - 22070657 | Requirements Analyst & Project Proposal |
 
 ## Notes
 
