@@ -65,3 +65,5 @@ In Development, Swagger UI for the REST API is available at `/swagger`.
 - Uploads accept PDF, DOCX, and PPTX up to 25 MB (see `LocalFileStorageService`).
 - New uploads are always `Pending` until an admin approves or rejects them from `/Admin`.
 - The live deployment runs on Azure App Service's free F1 tier, which idles after ~20 minutes of inactivity — the first request after a while can take 15–30s to cold-start.
+- Keyword and course-code search is a partial (substring)
+  match, not fuzzy — exact spelling works best.
