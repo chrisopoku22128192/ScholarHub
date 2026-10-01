@@ -47,17 +47,16 @@ In Development, Swagger UI for the REST API is available at `/swagger`.
 |---|------|------|
 | 1 | Austion Bediako - 22126218 | Team Lead / Full-Stack Developer |
 | 2 | Kenny Idan - 22180114 | Backend Developer (ASP.NET Core API) |
-| 3 | Chris Nana Opoku - 22128192 | Frontend Developer (Blazor / Razor Pages) |
-| 4 | Joseph Akondoh-Tetteh - 22055467 | Database Engineer (EF Core / SQL Server) |
-| 5 | Noble Ackah-Yensu - 22047433 | Authentication & Security (ASP.NET Identity) |
-| 6 | Robert Owoo - 22018250 | File Upload & Storage Module |
-| 7 | Nicole Eshun - 22241518 | Search & Filter Implementation |
-| 8 | Gabriel Ansah - 22018785 | UI/UX Designer |
-| 9 | Kwabena Yeboah - 22150775 | Admin Panel Developer |
-| 10 | Bamanjo Angela - 22077960 | QA & Testing Engineer |
-| 11 | Blessing Owusu Frema - 22108048 | Documentation & Report Writing |
-| 12 | Aiden Be-ir - 22034367 | DevOps / Deployment |
-| 13 | Ted William Ofori - 22070657 | Requirements Analyst & Project Proposal |
+| 3 | Chris Nana Opoku - 22128192 | Frontend Developer (Razor Pages) & Database Engineer (EF Core / SQL Server) |
+| 4 | Noble Ackah-Yensu - 22047433 | Authentication & Security (ASP.NET Identity) |
+| 5 | Robert Owoo - 22018250 | File Upload & Storage Module |
+| 6 | Nicole Eshun - 22241518 | Search & Filter Implementation |
+| 7 | Gabriel Ansah - 22018785 | UI/UX Designer |
+| 8 | Kwabena Yeboah - 22150775 | Admin Panel Developer |
+| 9 | Bamanjo Angela - 22077960 | QA & Testing Engineer |
+| 10 | Blessing Owusu Frema - 22108048 | Documentation & Report Writing |
+| 11 | Aiden Be-ir - 22034367 | DevOps / Deployment |
+| 12 | Ted William Ofori - 22070657 | Requirements Analyst & Project Proposal |
 
 ## Notes
 
