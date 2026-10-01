@@ -33,7 +33,8 @@ public class IndexModel : PageModel
         Pending = await _resourceService.GetPendingAsync(ct);
         AllResources = await _resourceService.GetAllForAdminAsync(StatusFilter, ct);
     }
-
+/// <summary>Approves a pending resource and records the
+    /// reviewing admin.</summary>
     public async Task<IActionResult> OnPostApproveAsync(int id, CancellationToken ct)
     {
         var reviewerId = User.FindFirstValue(ClaimTypes.NameIdentifier)!;
