@@ -48,6 +48,7 @@ public class ResourcesController : ControllerBase
     }
 
     /// <summary>The current user's own uploads, regardless of status.</summary>
+    /// <summary>Returns the signed-in user's own uploads, any status.</summary>
     [HttpGet("mine")]
     [Authorize]
     public async Task<ActionResult<IReadOnlyList<ResourceDto>>> Mine(CancellationToken ct)
