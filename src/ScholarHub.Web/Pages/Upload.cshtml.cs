@@ -10,6 +10,8 @@ namespace ScholarHub.Web.Pages;
 // Authenticated upload form (see the "/Upload" AuthorizePage convention in
 // Program.cs). New resources always start Pending and need admin approval
 // before they appear in search.
+// Validation contract QA checks against: required fields,
+    // length caps, and the "2023/2024" academic-year format.
 public class UploadModel : PageModel
 {
     private readonly IResourceService _resourceService;

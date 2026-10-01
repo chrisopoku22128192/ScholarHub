@@ -22,7 +22,10 @@ public class LocalFileStorageService : IFileStorageService
 
         Directory.CreateDirectory(_uploadsRoot);
     }
+/// <summary>Validates extension/size, then writes the file to
+    /// disk under a randomized name.</summary>
 
+     
     public async Task<string> SaveAsync(IFormFile file, CancellationToken cancellationToken = default)
     {
         if (file.Length == 0)

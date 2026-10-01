@@ -1,3 +1,6 @@
+/* Design tokens: warm paper ground, indigo primary, sage/amber
+   accents — paired with Fraunces for display type and Inter
+   for body text. */
 :root {
   --sh-navy: #1c2541;
   --sh-primary: #3548b4;
