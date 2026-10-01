@@ -54,7 +54,7 @@ In Development, Swagger UI for the REST API is available at `/swagger`.
 | 7 | Nicole Eshun - 22241518 | Search & Filter Implementation |
 | 8 | Gabriel Ansah - 22018785 | UI/UX Designer |
 | 9 | Kwabena Yeboah - 22150775 | Admin Panel Developer |
-| 10 | Bamanjo Angela - 22077960 | QA & Testing Engineer |
+| 10 | Bamanjo Angela - 22077960 | QA & Testing Engineer. |
 | 11 | Blessing Owusu Frema - 22108048 | Documentation & Report Writing |
 | 12 | Aiden Be-ir - 22034367 | DevOps / Deployment |
 | 13 | Ted William Ofori - 22070657 | Requirements Analyst & Project Proposal |
