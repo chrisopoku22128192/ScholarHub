@@ -29,7 +29,9 @@ public static class SeedData
                 await roleManager.CreateAsync(new IdentityRole(role));
             }
         }
-
+// Overridable via Seed:AdminEmail / Seed:AdminPassword so the
+        // default credentials never have to be the ones used in a
+        // real deployment.
         var config = provider.GetRequiredService<IConfiguration>();
         var adminEmail = config["Seed:AdminEmail"] ?? "admin@scholarhub.local";
         var adminPassword = config["Seed:AdminPassword"] ?? "Admin#12345";
