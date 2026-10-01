@@ -5,6 +5,8 @@ namespace ScholarHub.Web.Models;
 // adjust to match a specific institution's structure as needed.
 public static class Departments
 {
+    /// <summary>Departments gathered during initial requirements
+    /// — adjust per institution.</summary>
     public static readonly string[] All =
     [
         "Computer Science",
