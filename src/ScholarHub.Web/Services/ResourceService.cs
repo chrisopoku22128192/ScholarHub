@@ -14,7 +14,8 @@ public class ResourceService : IResourceService
         _db = db;
         _storage = storage;
     }
-
+     /// <summary>Filters approved resources by keyword/department
+    /// /course/year/type, paginated.</summary>
     public async Task<PagedResult<Resource>> SearchApprovedAsync(ResourceSearchQuery query, CancellationToken ct = default)
     {
         var pageNumber = Math.Max(1, query.PageNumber);
