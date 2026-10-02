@@ -1,3 +1,6 @@
+// ScholarHub: Razor Pages UI + REST API in one ASP.NET Core 8
+// app, sharing one service layer and one Identity auth
+// cookie across both surfaces.
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
