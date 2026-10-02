@@ -5,7 +5,7 @@ publish/
 *.zip
 *.user
 
-## SQLite
+## SQLite (production overrides the db path via ConnectionStrings__DefaultConnection)
 *.db
 *.db-shm
 *.db-wal
